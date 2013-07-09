@@ -774,7 +774,7 @@ class npc_muradin_gunship : public CreatureScript
     public:
         npc_muradin_gunship() : CreatureScript("npc_muradin_gunship") { }
 
-        bool OnGossipHello(Player* player, Creature* pCreature)
+        bool OnGossipHello(Player* player, Creature* pCreature) OVERRIDE
         {
             InstanceScript* pInstance = pCreature->GetInstanceScript();
             if (pInstance && pInstance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE)
@@ -793,7 +793,7 @@ class npc_muradin_gunship : public CreatureScript
             return false;
         }
 
-        bool OnGossipSelect(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+        bool OnGossipSelect(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action) OVERRIDE
         {
             InstanceScript* instance = pCreature->GetInstanceScript();
             player->PlayerTalkClass->ClearMenus();
@@ -818,7 +818,7 @@ class npc_muradin_gunship : public CreatureScript
 
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 if (_instance->GetBossState(DATA_GUNSHIP_EVENT) == IN_PROGRESS)
                     return;
@@ -863,7 +863,7 @@ class npc_muradin_gunship : public CreatureScript
                 return false;
             }
 
-            void DoAction(int32 action)
+            void DoAction(int32 action) OVERRIDE
             {
                 switch (action)
                 {
@@ -982,7 +982,7 @@ class npc_muradin_gunship : public CreatureScript
                     me->DespawnOrUnsummon(1000);
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
@@ -1195,7 +1195,7 @@ class npc_muradin_gunship : public CreatureScript
                 bool EventScheduled;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_muradin_gunshipAI(pCreature);
         }
@@ -1213,7 +1213,7 @@ class npc_gunship_skybreaker : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 me->SetReactState(REACT_PASSIVE);
@@ -1221,7 +1221,7 @@ class npc_gunship_skybreaker : public CreatureScript
                 me->SetDisplayId(11686);
             }
 
-            void EnterCombat(Unit* /*who*/)
+            void EnterCombat(Unit* /*who*/) OVERRIDE
             {
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
                 SetCombatMovement(false);
@@ -1229,7 +1229,7 @@ class npc_gunship_skybreaker : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
             }
 
-            void JustDied(Unit* killer)
+            void JustDied(Unit* killer) OVERRIDE
             {
                 if (Transport* t = me->GetTransport())
                     DoShipExplosion(t);
@@ -1252,7 +1252,7 @@ class npc_gunship_skybreaker : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_gunship_skybreakerAI(pCreature);
         }
@@ -1270,7 +1270,7 @@ class npc_gunship_orgrimmar : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 me->SetReactState(REACT_PASSIVE);
@@ -1278,7 +1278,7 @@ class npc_gunship_orgrimmar : public CreatureScript
                 me->SetDisplayId(11686);
             }
 
-            void EnterCombat(Unit* /*who*/)
+            void EnterCombat(Unit* /*who*/) OVERRIDE
             {
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
                 SetCombatMovement(false);
@@ -1286,7 +1286,7 @@ class npc_gunship_orgrimmar : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
             }
 
-            void JustDied(Unit* killer)
+            void JustDied(Unit* killer) OVERRIDE
             {
                 if (Transport* t = me->GetTransport())
                     DoShipExplosion(t);
@@ -1309,7 +1309,7 @@ class npc_gunship_orgrimmar : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_gunship_orgrimmarAI(pCreature);
         }
@@ -1328,7 +1328,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 DesperateResolve = RAID_MODE( SPELL_DESPERATE_RESOLVE_10_NM, SPELL_DESPERATE_RESOLVE_25_NM, SPELL_DESPERATE_RESOLVE_10_HM, SPELL_DESPERATE_RESOLVE_25_HM);
@@ -1346,7 +1346,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
                     SetEquipmentSlots(false, 49691, EQUIP_NO_CHANGE, EQUIP_NO_CHANGE);
             }
 
-            void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/)
+            void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/) OVERRIDE
             {
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE && me->GetHealthPct() < 20.0f && !desperated)
                 {
@@ -1355,7 +1355,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
                 }
             }
 
-            void JustDied(Unit* killer)
+            void JustDied(Unit* killer) OVERRIDE
             {
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE)
                 {
@@ -1370,7 +1370,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != IN_PROGRESS)
                     return;
@@ -1425,7 +1425,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_korkron_axethrower_riflemanAI(pCreature);
         }
@@ -1443,7 +1443,7 @@ class npc_sergeant : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
@@ -1460,7 +1460,7 @@ class npc_sergeant : public CreatureScript
                     events.ScheduleEvent(EVENT_ELITE, urand(59000, 61000));       // ~60 sec
             }
 
-            void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/)
+            void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/) OVERRIDE
             {
                 if (me->GetHealthPct() < 20.0f && !desperated)
                 {
@@ -1477,7 +1477,7 @@ class npc_sergeant : public CreatureScript
                 return true;
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if(_instance->GetBossState(DATA_GUNSHIP_EVENT) != IN_PROGRESS)
                     return;
@@ -1558,7 +1558,7 @@ class npc_sergeant : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_sergeantAI(pCreature);
         }
@@ -1576,7 +1576,7 @@ class npc_marine_or_reaver : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 desperated = false;
@@ -1591,7 +1591,7 @@ class npc_marine_or_reaver : public CreatureScript
                 events.ScheduleEvent(EVENT_BURNING_PITCH, urand(60000, 62000));// ~61 sec
             }
 
-            void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/)
+            void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/) OVERRIDE
             {
                 if (me->GetHealthPct() < 20.0f && !desperated)
                 {
@@ -1608,7 +1608,7 @@ class npc_marine_or_reaver : public CreatureScript
                 return true;
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if(_instance->GetBossState(DATA_GUNSHIP_EVENT) != IN_PROGRESS)
                     return;
@@ -1673,7 +1673,7 @@ class npc_marine_or_reaver : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_marine_or_reaverAI(pCreature);
         }
@@ -1691,13 +1691,13 @@ class npc_gunship_mage : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 timer_BelowZero = urand(10000, 15000);
             }
 
-            void DoAction(int32 action)
+            void DoAction(int32 action) OVERRIDE
             {
                 switch (action)
                 {
@@ -1731,7 +1731,7 @@ class npc_gunship_mage : public CreatureScript
                 }
             }
 
-            void JustDied(Unit* killer)
+            void JustDied(Unit* killer) OVERRIDE
             {
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE)
                 {
@@ -1752,7 +1752,7 @@ class npc_gunship_mage : public CreatureScript
                  }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if(_instance->GetBossState(DATA_GUNSHIP_EVENT) != IN_PROGRESS)
                     return;
@@ -1782,7 +1782,7 @@ class npc_gunship_mage : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_gunship_mageAI(pCreature);
         }
@@ -1798,7 +1798,7 @@ class npc_gunship_cannon : public CreatureScript
         {
             npc_gunship_cannonAI(Creature *creature) : ScriptedAI(creature) { }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 me->SetReactState(REACT_PASSIVE);
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
@@ -1826,7 +1826,7 @@ class npc_gunship_cannon : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if(me->HasAura(SPELL_BELOW_ZERO))
                 {
@@ -1852,7 +1852,7 @@ class npc_gunship_cannon : public CreatureScript
 
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_gunship_cannonAI(pCreature);
         }
@@ -1870,7 +1870,7 @@ class npc_mortar_soldier_or_rocketeer : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 me->RemoveAurasDueToSpell(SPELL_EXPERIENCED);
@@ -1882,7 +1882,7 @@ class npc_mortar_soldier_or_rocketeer : public CreatureScript
                 events.ScheduleEvent(EVENT_ROCKET_ART, urand(10000, 15000));   // ~12 sec
             }
 
-            void JustDied(Unit* killer)
+            void JustDied(Unit* killer) OVERRIDE
             {
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE)
                 {
@@ -1896,7 +1896,7 @@ class npc_mortar_soldier_or_rocketeer : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if(_instance->GetBossState(DATA_GUNSHIP_EVENT) != IN_PROGRESS)
                     return;
@@ -1950,7 +1950,7 @@ class npc_mortar_soldier_or_rocketeer : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_mortar_soldier_or_rocketeerAI(pCreature);
         }
@@ -1961,7 +1961,7 @@ class npc_zafod_boombox : public CreatureScript
     public:
         npc_zafod_boombox() : CreatureScript("npc_zafod_boombox") { }
 
-        bool OnGossipHello(Player* pPlayer, Creature* pCreature)
+        bool OnGossipHello(Player* pPlayer, Creature* pCreature) OVERRIDE
         {
             // Maybe this isn't blizzlike but I can't find any spell in the DBCs
             if (pPlayer->GetItemCount(49278, false) == 0)
@@ -1970,7 +1970,7 @@ class npc_zafod_boombox : public CreatureScript
             return true;
         }
 
-        bool OnGossipSelect(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+        bool OnGossipSelect(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action) OVERRIDE
         {
             player->PlayerTalkClass->ClearMenus();
             player->CLOSE_GOSSIP_MENU();
@@ -2008,7 +2008,7 @@ class npc_saurfang_gunship : public CreatureScript
     public:
         npc_saurfang_gunship() : CreatureScript("npc_saurfang_gunship") { }
 
-        bool OnGossipHello(Player* player, Creature* pCreature)
+        bool OnGossipHello(Player* player, Creature* pCreature) OVERRIDE
         {
             InstanceScript* pInstance = pCreature->GetInstanceScript();
             if (pInstance && pInstance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE)
@@ -2027,7 +2027,7 @@ class npc_saurfang_gunship : public CreatureScript
             return false;
         }
 
-        bool OnGossipSelect(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action)
+        bool OnGossipSelect(Player* player, Creature* pCreature, uint32 /*sender*/, uint32 action) OVERRIDE
         {
             InstanceScript* instance = pCreature->GetInstanceScript();
             player->PlayerTalkClass->ClearMenus();
@@ -2050,7 +2050,7 @@ class npc_saurfang_gunship : public CreatureScript
             {
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 if (_instance->GetBossState(DATA_GUNSHIP_EVENT) == IN_PROGRESS)
                     return;
@@ -2094,7 +2094,7 @@ class npc_saurfang_gunship : public CreatureScript
                 return false;
             }
 
-            void DoAction(int32 action)
+            void DoAction(int32 action) OVERRIDE
             {
                 switch (action)
                 {
@@ -2208,7 +2208,7 @@ class npc_saurfang_gunship : public CreatureScript
                     me->DespawnOrUnsummon(1000);
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
@@ -2416,7 +2416,7 @@ class npc_saurfang_gunship : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_saurfang_gunshipAI(pCreature);
         }
@@ -2434,18 +2434,18 @@ class npc_gunship_portal : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                events.ScheduleEvent(EVENT_UNSUMMON_PORTAL, 20500); // TODO: Fix the timers
                me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
             }
 
-            void JustDied(Unit* killer)
+            void JustDied(Unit* killer) OVERRIDE
             {
                 me->RemoveFromWorld();
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
 
              events.Update(diff);
@@ -2467,7 +2467,7 @@ class npc_gunship_portal : public CreatureScript
 
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_gunship_portalAI(pCreature);
         }
@@ -2487,14 +2487,14 @@ class npc_gunship_trigger : public CreatureScript
                 Reset();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 ScriptedAI::Reset();
                 me->SetReactState(REACT_PASSIVE);
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
             }
 
-            void EnterCombat(Unit* /*who*/)
+            void EnterCombat(Unit* /*who*/) OVERRIDE
             {
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
                 SetCombatMovement(false);
@@ -2505,7 +2505,7 @@ class npc_gunship_trigger : public CreatureScript
                 damage = 0;
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
 
             }
@@ -2515,7 +2515,7 @@ class npc_gunship_trigger : public CreatureScript
                 InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_gunship_triggerAI(pCreature);
         }
@@ -2536,7 +2536,7 @@ class npc_korkron_primalist: public CreatureScript
                 instance = creature->GetInstanceScript();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 _started = instance->GetBossState(DATA_GUNSHIP_EVENT) == DONE;
                 events.Reset();
@@ -2544,7 +2544,7 @@ class npc_korkron_primalist: public CreatureScript
                 events.ScheduleEvent(EVENT_HEAL, 20000); // TODO: Fix the timers
             }
 
-            void MoveInLineOfSight(Unit* who)
+            void MoveInLineOfSight(Unit* who)  OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2566,7 +2566,7 @@ class npc_korkron_primalist: public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2635,7 +2635,7 @@ class npc_korkron_primalist: public CreatureScript
                 InstanceScript* instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_korkron_primalistAI(pCreature);
         }
@@ -2654,7 +2654,7 @@ class npc_korkron_defender: public CreatureScript
                 instance = creature->GetInstanceScript();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 events.Reset();
                 events.ScheduleEvent(EVENT_DEVASTATE, 10000);
@@ -2663,7 +2663,7 @@ class npc_korkron_defender: public CreatureScript
                 events.ScheduleEvent(EVENT_SUNDER_ARMOR, 15000);
             }
 
-            void MoveInLineOfSight(Unit* who)
+            void MoveInLineOfSight(Unit* who)  OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2685,7 +2685,7 @@ class npc_korkron_defender: public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2748,7 +2748,7 @@ class npc_korkron_defender: public CreatureScript
                 InstanceScript* instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_korkron_defenderAI(pCreature);
         }
@@ -2767,7 +2767,7 @@ class npc_skybreaker_vindicator: public CreatureScript
                 instance = creature->GetInstanceScript();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 _started = instance->GetBossState(DATA_GUNSHIP_EVENT) == DONE;
                 events.Reset();
@@ -2776,7 +2776,7 @@ class npc_skybreaker_vindicator: public CreatureScript
                 events.ScheduleEvent(EVENT_HOLY_WRATH, 20000); // TODO: Fix the timers
             }
 
-            void MoveInLineOfSight(Unit* who)
+            void MoveInLineOfSight(Unit* who)  OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2798,7 +2798,7 @@ class npc_skybreaker_vindicator: public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2854,7 +2854,7 @@ class npc_skybreaker_vindicator: public CreatureScript
                 InstanceScript* instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_skybreaker_vindicatorAI(pCreature);
         }
@@ -2873,7 +2873,7 @@ class npc_skybreaker_protector: public CreatureScript
                 instance = creature->GetInstanceScript();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 events.Reset();
                 events.ScheduleEvent(EVENT_DEVASTATE, 10000);
@@ -2882,7 +2882,7 @@ class npc_skybreaker_protector: public CreatureScript
                 events.ScheduleEvent(EVENT_SUNDER_ARMOR, 15000);
             }
 
-            void MoveInLineOfSight(Unit* who)
+            void MoveInLineOfSight(Unit* who)  OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2905,7 +2905,7 @@ class npc_skybreaker_protector: public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!instance)
                     return;
@@ -2970,7 +2970,7 @@ class npc_skybreaker_protector: public CreatureScript
                 EventMap events;
                 InstanceScript* instance;
         };
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_skybreaker_protectorAI(pCreature);
         }
@@ -2990,7 +2990,7 @@ class npc_icc_spire_frostwyrm: public CreatureScript
                 instance = creature->GetInstanceScript();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 landed = false;
                 events.Reset();
@@ -3002,7 +3002,7 @@ class npc_icc_spire_frostwyrm: public CreatureScript
                 events.ScheduleEvent(EVENT_CLEAVE, 10000);
             }
 
-            void MoveInLineOfSight(Unit* who)
+            void MoveInLineOfSight(Unit* who)  OVERRIDE
             {
                 if (!instance)
                     return;
@@ -3028,7 +3028,7 @@ class npc_icc_spire_frostwyrm: public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!UpdateVictim())
                     return;
@@ -3069,7 +3069,7 @@ class npc_icc_spire_frostwyrm: public CreatureScript
                 InstanceScript* instance;
         };
 
-        CreatureAI* GetAI(Creature* pCreature) const
+        CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
         {
             return new npc_icc_spire_frostwyrmAI(pCreature);
         }

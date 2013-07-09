@@ -24,7 +24,7 @@ class anticheat_commandscript : public CommandScript
 public:
     anticheat_commandscript() : CommandScript("anticheat_commandscript") { }
 
-    ChatCommand* GetCommands() const
+    ChatCommand* GetCommands() const OVERRIDE
     {
         static ChatCommand anticheatCommandTable[] =
         {

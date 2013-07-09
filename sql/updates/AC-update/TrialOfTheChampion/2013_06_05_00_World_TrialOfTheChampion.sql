@@ -80,6 +80,7 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (35644, 0, 0, 0, 0, 0, 28918, 0, 0, 0, 'Argent Warhorse', '', 'vehichleCursor', 0, 80, 80, 2, 84, 84, 16777216, 1, 2, 1, 0, 422, 586, 0, 642, 1, 0, 0, 1, 256, 8, 0, 0, 0, 0, 0, 345, 509, 103, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62544, 62575, 63010, 66482, 0, 0, 0, 0, 0, 486, 0, 0, '', 0, 3, 3.96825, 1, 1, 0, 0, 0, 0, 0, 0, 0, 157, 1, 0, 0, '', 12340),
 (35768, 0, 0, 0, 0, 0, 29255, 0, 0, 0, 'Colosos'' Mount', '', '', 0, 80, 80, 2, 14, 14, 0, 1, 1.38571, 1, 1, 420, 630, 0, 157, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 489, 0, 0, '', 0, 3, 15, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'generic_vehicleAI_toc5', 12340),
 (36558, 0, 0, 0, 0, 0, 29283, 0, 0, 0, 'Argent Battleworg', '', 'vehichleCursor', 0, 80, 80, 2, 83, 83, 16777216, 1, 2, 1, 0, 422, 586, 0, 642, 1, 0, 0, 1, 256, 8, 0, 0, 0, 0, 0, 345, 509, 103, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62544, 62575, 63010, 66482, 0, 0, 0, 0, 0, 486, 0, 0, '', 0, 3, 3.96825, 1, 1, 0, 0, 0, 0, 0, 0, 0, 157, 1, 0, 0, '', 12340);
+
 -- Mount on mount action!
 DELETE FROM `vehicle_template_accessory` WHERE `entry` IN (35638,35637,35635,34658,35636,35768,35633,35640,35641,35634,33321,33323,33320,33322,33316,33317,33324,33217,33318,33319,35491);
 INSERT INTO `vehicle_template_accessory` (`entry`, `accessory_entry`, `seat_id`, `minion`, `description`, `summontype`, `summontimer`) VALUES
@@ -104,6 +105,7 @@ INSERT INTO `vehicle_template_accessory` (`entry`, `accessory_entry`, `seat_id`,
 (33318,35330,0,1,'Exodar Elekk',6,30000),
 (33319,35332,0,1,'Darnassian Nightsaber',6,30000),
 (35491,35451,0,0,'Trial of the Champion - Black Knight on his gryphon',6,30000);
+
 -- Model data (TDB)
 UPDATE `creature_model_info` SET `bounding_radius`=0,`combat_reach`=1,`gender`=0 WHERE `modelid`=29255; -- Colosos' Mount
 UPDATE `creature_model_info` SET `bounding_radius`=0.525,`combat_reach`=2.25,`gender`=0 WHERE `modelid`=9991; -- Jaelyne Evensong's Mount
@@ -136,6 +138,7 @@ INSERT INTO `npc_spellclick_spells` (`npc_entry`,`spell_id`,`cast_flags`,`user_t
 (33318,46598,1,0), -- Exodar Elekk - Ride Vehicle Hardcoded
 (33319,46598,1,0), -- Darnassian Nightsaber - Ride Vehicle Hardcoded
 (35491,46598,1,0); -- Black Knight - Ride Vehicle Hardcoded
+
 -- Creature addon
 DELETE FROM `creature_template_addon` WHERE `entry` IN (35572, 35569, 35571, 35570, 35617, 34705, 34702, 34701, 34657, 34703, 35314, 35326, 35325, 35323, 35327, 35328, 35331, 35330, 35332, 35329, 35119, 34928, 35309, 35305, 35307, 35451, 35545, 35564, 35004, 35005, 35052, 35041, 35033, 35046, 35043, 35047, 35044, 35039, 35034, 35049, 35030, 34942, 35050, 35042, 35045, 35037, 35031, 35038, 35029, 35048, 35032, 35028, 35040, 35036, 35051, 35637, 35633, 35768, 34658, 35636, 33319, 33318, 33217, 33317, 33316, 35638, 35635, 35640, 35641, 35634, 33324, 33322, 33320, 33323, 33321, 35644, 36558, 35492, 35491);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `auras`) VALUES
@@ -165,7 +168,7 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 (35768, 0, 0, 0, 1, 0, NULL),
 (36558, 0, 0, 0, 1, 0, NULL);
 
--- Texts
+-- Creature Texts
 DELETE FROM `creature_text` WHERE `entry` IN (35004, 35005, 34928, 35119, 35451, 34705, 34702, 34701, 34657, 34703, 35572, 35569, 35571, 35570, 35617);
 DELETE FROM `creature_text` WHERE `entry` = 34996 AND `groupid` > 16; -- Tirion
 DELETE FROM `creature_text` WHERE `entry` IN(34994, 34990, 34995, 34992) AND `groupid` > 9; -- Thrall, Varian, Garrosh, Jaina
@@ -182,7 +185,6 @@ INSERT INTO `creature_text` (`entry`, `groupid`, `id`, `text`, `type`, `language
 (34992, 11, 0, "They're worthy fighters, you'll see.", 12, 0, 0, 2, 0, 0, "ToC - Horde Intro 6"),
 (34994, 11, 0, "Garrosh, enough.", 12, 0, 0, 2, 0, 0, "ToC - Alliance Intro 6"),
 (34996, 18, 0, "You will first be facing three of the Grand Champions of the Tournament! These fierce contenders have beaten out all others to reach the pinnacle of skill in the joust.", 12, 0, 0, 2, 0, 0, "ToC5 - Intro 7"),
-
 (35004, 1, 0, "Proud and strong, give a cheer for Marshal Jacob Alerius, the Grand Champion of Stormwind!", 14, 0, 0, 2, 0, 0, "ToC5 - Stormwind Enters"),
 (35004, 2, 0, "The humans of Stormwind cheer for Marshal Jacob Alerius.", 41, 0, 0, 2, 0, 8572, "ToC5 - Stormwind Cheers"),
 (35004, 3, 0, "Here comes the small but deadly Amberose Boltspark, Grand Champion of Gnomregan!", 14, 0, 0, 2, 0, 0, "ToC5 - Gnomeregan Enters"),
@@ -193,7 +195,6 @@ INSERT INTO `creature_text` (`entry`, `groupid`, `id`, `text`, `type`, `language
 (35004, 8, 0, "The night elves of Darnassus cheer for Jaelyne Evensong.", 41, 0, 0, 2, 0, 8572, "ToC5 - Darnassus Cheers"),
 (35004, 9, 0, "The might of the dwarves is represented today by the Grand Champion of Ironforge, Lana Stouthammer!", 14, 0, 0, 2, 0, 0, "ToC5 - Ironforge Enters"),
 (35004, 10, 0, "The dwarves of Ironforge being a cheer for Lana Stouthammer.", 41, 0, 0, 2, 0, 8572, "ToC5 - Ironforge Cheers"),
-
 (35005, 1, 0, "Presenting the fierce Grand Champion of Orgrimmar, Mokra the Skullcrusher!", 14, 0, 0, 2, 0, 0, "ToC5 - Orgrimmar Enters"),
 (35005, 2, 0, "The orcs of Orgrimmar cheer for Mokra the Skullcrusher.", 41, 0, 0, 2, 0, 8572, "ToC5 - Orgrimmar Cheers"),
 (35005, 3, 0, "Coming out of the gate is Eressa Dawnsinger, skilled mage and Grand Champion of Silvermoon!", 14, 0, 0, 2, 0, 0, "ToC5 - Silvermoon Enters"),
@@ -204,7 +205,6 @@ INSERT INTO `creature_text` (`entry`, `groupid`, `id`, `text`, `type`, `language
 (35005, 8, 0, "The trolls of Sen'jin begin a chant to celebrate Zul'tore.", 41, 0, 0, 2, 0, 8572, "ToC5 - Sen'jin Cheers"),
 (35005, 9, 0, "Representing the tenacity of the Forsaken, here is the Grand Champion of the Undercity, Deathstalker Visceri!", 14, 0, 0, 2, 0, 0, "ToC5 - Undercity Enters"),
 (35005, 10, 0, "The forsaken of the Undercity cheer for Deathstalker Visceri!.", 41, 0, 0, 2, 0, 8572, "ToC5 - Undercity Cheers"),
-
 (34705, 1, 0, "Please change your weapon. The next battle will be starting shortly.", 41, 0, 0, 0, 0, 0, "ToC - Equip Warning"),
 (35572, 1, 0, "Please change your weapon. The next battle will be starting shortly.", 41, 0, 0, 0, 0, 0, "ToC - Equip Warning"),
 (34705, 0, 0, "Excellent work!", 12, 0, 0, 0, 0, 0, "ToC - Champion Defeated"),
@@ -231,7 +231,6 @@ INSERT INTO `creature_text` (`entry`, `groupid`, `id`, `text`, `type`, `language
 (34928, 5, 0, "Take your rest.", 12, 0, 0, 0, 0, 16250, "ToC5 - Paletress Kill Player 1"),
 (34928, 5, 1, "Be at ease.", 12, 0, 0, 0, 0, 16251, "ToC5 - Paletress Kill Player 2"),
 (34928, 6, 1, "Excellent work!", 12, 0, 0, 0, 0, 16252, "ToC5 - Paletress Defeated"),
-
 (35004, 13, 0, "Entering the arena, a paladin who is no stranger to the battlefield or tournament ground, the Grand Champion of the Argent Crusade, Eadric the Pure!", 12, 0, 0, 2, 0, 0, "ToC5 - Eadric Horde Intro 2"),
 (35005, 13, 0, "Entering the arena, a paladin who is no stranger to the battlefield or tournament ground, the Grand Champion of the Argent Crusade, Eadric the Pure!", 12, 0, 0, 2, 0, 0, "ToC5 - Eadric Alliance Intro 2"),
 (35004, 14, 0, "The Alliance spectators cheer for Eadric The Pure.", 41, 0, 0, 0, 0, 8573, "ToC5 - Eadric Horde Intro 3"),
@@ -242,7 +241,6 @@ INSERT INTO `creature_text` (`entry`, `groupid`, `id`, `text`, `type`, `language
 (35119, 3, 0, "You... You need more practice.", 14, 0, 0, 0, 0, 16137, "ToC5 - Eadric Kill Player 1"),
 (35119, 3, 1, "Nay! Nay! And I say yet again nay! Not good enough!", 14, 0, 0, 0, 0, 16138, "ToC5 - Eadric Kill Player 2"),
 (35119, 4, 0, "I yield! I submit. Excellent work. May I run away now?", 14, 0, 0, 0, 0, 16139, "ToC5 - Eadric Defeated"),
-
 (34996, 21, 0, "Well done.  You have proven yourself today-", 12, 0, 0, 2, 0, 0, "ToC5 - Black Knight Intro 1"),
 (35004, 15, 0, "What's that, up near the rafters?", 12, 0, 0, 2, 0, 0, "Horde Black Knight Intro 2"),
 (35005, 15, 0, "What's that, up near the rafters?", 12, 0, 0, 2, 0, 0, "Alliance Black Knight Intro 2"),
@@ -357,7 +355,6 @@ INSERT INTO `creature_template_addon` (`entry`,`bytes2`,`auras`) VALUES
 DELETE FROM `creature` WHERE `map`=650;
 INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `currentwaypoint`, `curhealth`, `curmana`, `npcflag`, `MovementType`) VALUES 
 
-
 (230958, 36558, 650, 3, 1, 0, 0, 726.826, 661.201, 412.472, 4.66003, 86400, 0, 0, 1, 0, 0, 0),
 (230960, 36558, 650, 3, 1, 0, 0, 716.665, 573.495, 412.475, 0.977384, 86400, 0, 0, 1, 0, 0, 0), 
 (230962, 36558, 650, 3, 1, 0, 0, 705.497, 583.944, 412.476, 0.698132, 86400, 0, 0, 1, 0, 0, 0), 
@@ -370,7 +367,6 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `modelid`
 (230976, 36558, 650, 3, 1, 0, 0, 793.052, 642.851, 412.474, 3.63029, 86400, 0, 0, 1, 0, 0, 0), 
 (230978, 36558, 650, 3, 1, 0, 0, 778.741, 576.049, 412.476, 2.23402, 86400, 0, 0, 1, 0, 0, 0), 
 (230980, 36558, 650, 3, 1, 0, 0, 788.016, 650.788, 412.475, 3.80482, 86400, 0, 0, 1, 0, 0, 0),
-
 (230982, 35644, 650, 3, 1, 0, 0, 704.943, 651.33, 412.475, 5.60251, 86400, 0, 0, 1, 0, 0, 0),
 (230984, 35644, 650, 3, 1, 0, 0, 774.898, 573.736, 412.475, 2.14675, 86400, 0, 0, 1, 0, 0, 0), 
 (230986, 35644, 650, 3, 1, 0, 0, 699.943, 643.37, 412.474, 5.77704, 86400, 0, 0, 1, 0, 0, 0), 
@@ -383,11 +379,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `modelid`
 (231000, 35644, 650, 3, 1, 0, 0, 722.363, 660.745, 412.468, 4.83456, 86400, 0, 0, 1, 0, 0, 0), 
 (231002, 35644, 650, 3, 1, 0, 0, 790.49, 646.533, 412.474, 3.71755, 86400, 0, 0, 1, 0, 0, 0), 
 (231004, 35644, 650, 3, 1, 0, 0, 777.564, 660.3, 412.467, 4.34587, 86400, 0, 0, 1, 0, 0, 0),
-
-
 (230961, 35004, 650, 3, 1, 0, 0, 746.626, 618.54, 411.09, 4.63158, 86400, 0, 0, 10635, 0, 0, 0),
-
-
 (215948, 35016, 650, 3, 1, 0, 0, 746.524, 615.868, 411.172, 0, 180, 0, 0, 1, 0, 0, 0),
 (215949, 35016, 650, 3, 1, 0, 0, 795.549, 618.25, 412.477, 0, 180, 0, 0, 1, 0, 0, 0),
 (215950, 35016, 650, 3, 1, 0, 0, 782.12, 583.21, 412.474, 0, 180, 0, 0, 1, 0, 0, 0),
@@ -402,8 +394,6 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `modelid`
 (215959, 35016, 650, 3, 1, 0, 0, 792.259, 598.224, 412.47, 0, 180, 0, 0, 1, 0, 0, 0),
 (215960, 35016, 650, 3, 1, 0, 0, 712.413, 653.931, 412.474, 0, 180, 0, 0, 1, 0, 0, 0),
 (215961, 35016, 650, 3, 1, 0, 0, 747.375, 619.109, 411.971, 0, 180, 0, 0, 1, 0, 0, 0),
-
-
 (231040, 34856, 650, 3, 65535, 0, 0, 810.378, 600.961, 438.781, 2.85266, 300, 0, 0, 1, 0, 0, 0), 
 (231041, 34856, 650, 3, 65535, 0, 0, 803.7, 601.271, 435.419, 2.93905, 300, 0, 0, 1, 0, 0, 0),
 (231042, 34856, 650, 3, 65535, 0, 0, 803.254, 599.097, 435.419, 2.93512, 300, 0, 0, 1, 0, 0, 0),

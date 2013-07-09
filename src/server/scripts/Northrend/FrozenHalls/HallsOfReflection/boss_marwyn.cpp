@@ -51,7 +51,7 @@ class boss_marwyn : public CreatureScript
 public:
     boss_marwyn() : CreatureScript("boss_marwyn") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_marwynAI(creature);
     }
@@ -60,7 +60,7 @@ public:
     {
         boss_marwynAI(Creature* creature) : boss_horAI(creature) {}
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             boss_horAI::Reset();
 
@@ -73,7 +73,7 @@ public:
             instance->SetData(DATA_WAVE_STATE, FAIL);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             Talk(SAY_AGGRO);
             if (instance)
@@ -85,7 +85,7 @@ public:
             // events.ScheduleEvent(EVENT_SHARED_SUFFERING, 20000);    // I don't believe this spell is working properly atm, it will 1 shot a player when it ends
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             Talk(SAY_DEATH);
 
@@ -96,12 +96,12 @@ public:
             }
         }
 
-        void KilledUnit(Unit* /*victim*/)
+        void KilledUnit(Unit* /*victim*/) OVERRIDE
         {
             Talk(SAY_SLAY);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             // Return since we have no target
             if (!UpdateVictim())

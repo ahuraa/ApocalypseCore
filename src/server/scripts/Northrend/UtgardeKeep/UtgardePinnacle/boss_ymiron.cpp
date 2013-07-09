@@ -30,28 +30,28 @@ Script Data End */
 
 enum Spells
 {
-    SPELL_BANE								= 48294,
-    H_SPELL_BANE							= 59301,
-    SPELL_DARK_SLASH						= 48292,
-    SPELL_FETID_ROT							= 48291,
-    H_SPELL_FETID_ROT						= 59300,
-    SPELL_SCREAMS_OF_THE_DEAD				= 51750,
-    SPELL_SPIRIT_BURST						= 48529,
-    H_SPELL_SPIRIT_BURST					= 59305,
-    SPELL_SPIRIT_STRIKE						= 48423,
-    H_SPELL_SPIRIT_STRIKE					= 59304,
-    SPELL_ANCESTORS_VENGEANCE				= 16939,
+    SPELL_BANE                                = 48294,
+    H_SPELL_BANE                              = 59301,
+    SPELL_DARK_SLASH                          = 48292,
+    SPELL_FETID_ROT                           = 48291,
+    H_SPELL_FETID_ROT                         = 59300,
+    SPELL_SCREAMS_OF_THE_DEAD                 = 51750,
+    SPELL_SPIRIT_BURST                        = 48529,
+    H_SPELL_SPIRIT_BURST                      = 59305,
+    SPELL_SPIRIT_STRIKE                       = 48423,
+    H_SPELL_SPIRIT_STRIKE                     = 59304,
+    SPELL_ANCESTORS_VENGEANCE                 = 16939,
 
-    SPELL_SUMMON_AVENGING_SPIRIT			= 48592,
-    SPELL_SUMMON_SPIRIT_FOUNT				= 48386,
+    SPELL_SUMMON_AVENGING_SPIRIT              = 48592,
+    SPELL_SUMMON_SPIRIT_FOUNT                 = 48386,
 
-    SPELL_CHANNEL_SPIRIT_TO_YMIRON			= 48316,
-    SPELL_CHANNEL_YMIRON_TO_SPIRIT			= 48307,
+    SPELL_CHANNEL_SPIRIT_TO_YMIRON            = 48316,
+    SPELL_CHANNEL_YMIRON_TO_SPIRIT            = 48307,
 
-    SPELL_SPIRIT_FOUNT						= 48380,
-    H_SPELL_SPIRIT_FOUNT					= 59320,
-
-	SPELL_SPIRIT_VISUAL						= 42744 // Probably the wrong spell. It looks similar.
+    SPELL_SPIRIT_FOUNT                        = 48380,
+    H_SPELL_SPIRIT_FOUNT                      = 59320,
+	
+    SPELL_SPIRIT_VISUAL                       = 42744 // Probably the wrong spell. It looks similar.
 };
 
 //not in db
@@ -105,7 +105,7 @@ class boss_ymiron : public CreatureScript
 public:
     boss_ymiron() : CreatureScript("boss_ymiron") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_ymironAI(creature);
     }
@@ -159,7 +159,7 @@ public:
 
         InstanceScript* instance;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             m_bIsPause = false;
             m_bIsActiveWithBJORN = false;
@@ -190,7 +190,7 @@ public:
                 instance->SetData(DATA_KING_YMIRON_EVENT, NOT_STARTED);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             Talk(SAY_AGGRO);
 
@@ -198,13 +198,13 @@ public:
                 instance->SetData(DATA_KING_YMIRON_EVENT, IN_PROGRESS);
         }
 
-        void SpellHitTarget(Unit* who, SpellInfo const* spell)
+        void SpellHitTarget(Unit* who, SpellInfo const* spell) OVERRIDE
         {
             if (who && who->GetTypeId() == TYPEID_PLAYER && spell->Id == 59302)
                 kingsBane = false;
         }
 
-        uint32 GetData(uint32 type) const
+        uint32 GetData(uint32 type) const OVERRIDE
         {
             if (type == DATA_KINGS_BANE)
                 return kingsBane ? 1 : 0;
@@ -212,7 +212,7 @@ public:
             return 0;
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (m_bIsWalking)
             {
@@ -226,7 +226,7 @@ public:
                         temp->CastSpell(me, SPELL_CHANNEL_SPIRIT_TO_YMIRON, true);
                         temp->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
                         temp->SetDisableGravity(true);
-						temp->CastSpell(temp, SPELL_SPIRIT_VISUAL, true);
+                        temp->SetDisableGravity(true);
                         switch (m_uiActiveOrder[m_uiActivedNumber])
                         {
                             case 0: m_bIsActiveWithBJORN  = true; break;
@@ -330,7 +330,7 @@ public:
                             {
                                 temp->AddThreat(target, 0.0f);
                                 temp->AI()->AttackStart(target);
-								temp->CastSpell(temp, SPELL_CHANNEL_SPIRIT_TO_YMIRON, true);
+                                temp->CastSpell(temp, SPELL_CHANNEL_SPIRIT_TO_YMIRON, true);
                             }
                         }
                     }
@@ -372,7 +372,7 @@ public:
             }
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             Talk(SAY_DEATH);
 
@@ -383,7 +383,7 @@ public:
                 instance->SetData(DATA_KING_YMIRON_EVENT, DONE);
         }
 
-        void KilledUnit(Unit* /*victim*/)
+        void KilledUnit(Unit* /*victim*/) OVERRIDE
         {
             Talk(SAY_SLAY);
         }
@@ -407,7 +407,7 @@ class achievement_kings_bane : public AchievementCriteriaScript
         {
         }
 
-        bool OnCheck(Player* /*player*/, Unit* target)
+        bool OnCheck(Player* /*player*/, Unit* target) OVERRIDE
         {
             if (!target)
                 return false;

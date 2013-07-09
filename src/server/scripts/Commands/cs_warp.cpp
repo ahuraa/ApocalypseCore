@@ -32,7 +32,7 @@ class warp_commandscript : public CommandScript
 public:
     warp_commandscript() : CommandScript("warp_commandscript") { }
 
-    ChatCommand* GetCommands() const
+    ChatCommand* GetCommands() const OVERRIDE
     {
 		static ChatCommand warpCommandTable[] =
         {

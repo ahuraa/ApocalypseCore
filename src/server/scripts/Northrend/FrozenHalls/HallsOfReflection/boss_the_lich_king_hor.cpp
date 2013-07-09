@@ -61,7 +61,7 @@ class boss_lich_king_hor : public CreatureScript
 public:
    boss_lich_king_hor() : CreatureScript("boss_lich_king_hor") { }
 
-   CreatureAI* GetAI(Creature* creature) const
+   CreatureAI* GetAI(Creature* creature) const OVERRIDE
    {
        return new boss_lich_king_horAI(creature);
    }
@@ -83,7 +83,7 @@ public:
        bool NonFight;
        float walkSpeed;
 
-       void Reset()
+       void Reset() OVERRIDE
        {
            if(!pInstance)
                return;
@@ -94,9 +94,9 @@ public:
            uiWall = 0;
        }
 
-       void JustDied(Unit* /*killer*/) { }
+       void JustDied(Unit* /*killer*/) OVERRIDE {}
 
-       void WaypointReached(uint32 i)
+       void WaypointReached(uint32 i) OVERRIDE
        {
            if(pInstance->GetData(DATA_ICE_WALL_1) == IN_PROGRESS)
            {
@@ -135,7 +135,7 @@ public:
            }
        }
 
-       void AttackStart(Unit* who)
+       void AttackStart(Unit* who) OVERRIDE
        {
            if (!pInstance || !who)
                return;
@@ -149,7 +149,7 @@ public:
            npc_escortAI::AttackStart(who);
        }
 
-       void JustSummoned(Creature* summoned)
+       void JustSummoned(Creature* summoned) OVERRIDE
        {
            if(!pInstance || !summoned)
                return;
@@ -294,7 +294,7 @@ public:
            }
        }
 
-       void UpdateEscortAI(const uint32 diff)
+       void UpdateEscortAI(const uint32 diff) OVERRIDE
        {
            if(!pInstance)
                return;
@@ -393,7 +393,7 @@ public:
        bool _doJump;
        uint64 _liderGuid;
 
-       void Reset()
+       void Reset() OVERRIDE
        {
            DoCast(me, SPELL_EMERGE_VISUAL);
            _emergeTimer = 4000;
@@ -401,7 +401,7 @@ public:
            _doJump = false;
        }
 
-       void JustDied(Unit* /*killer*/)
+       void JustDied(Unit* /*killer*/) OVERRIDE
        {
            if (!instance)
                   return;
@@ -409,7 +409,7 @@ public:
            instance->SetData(DATA_SUMMONS, 0);
        }
 
-       void AttackStart(Unit* who)
+       void AttackStart(Unit* who) OVERRIDE
        {
            if (!who)
                   return;
@@ -420,7 +420,7 @@ public:
            ScriptedAI::AttackStart(who);
        }
 
-       void UpdateAI(uint32 diff)
+       void UpdateAI(uint32 diff) OVERRIDE
        {
            if (!instance)
                   return;
@@ -463,7 +463,7 @@ public:
        }
    };
 
-   CreatureAI* GetAI(Creature* creature) const
+   CreatureAI* GetAI(Creature* creature) const OVERRIDE
    {
        return new npc_raging_gnoulAI(creature);
    }
@@ -492,7 +492,7 @@ public:
        uint32 uiBoltVolleyTimer;
        uint32 uiCurseTimer;
 
-       void Reset()
+       void Reset() OVERRIDE
        {
            DoCast(me, SPELL_EMERGE_VISUAL);
            EmergeTimer = 5000;
@@ -502,7 +502,7 @@ public:
            Emerge = false;
        }
 
-       void JustDied(Unit* /*killer*/)
+       void JustDied(Unit* /*killer*/) OVERRIDE
        {
            if(!pInstance)
                return;
@@ -511,7 +511,7 @@ public:
 
        }
 
-       void AttackStart(Unit* who)
+       void AttackStart(Unit* who) OVERRIDE
        {
            if (!who)
                return;
@@ -522,7 +522,7 @@ public:
            ScriptedAI::AttackStart(who);
        }
 
-       void UpdateAI(uint32 diff)
+       void UpdateAI(uint32 diff) OVERRIDE
        {
            if(!pInstance)
                return;
@@ -576,7 +576,7 @@ public:
        }
    };
 
-   CreatureAI* GetAI(Creature* creature) const
+   CreatureAI* GetAI(Creature* creature) const OVERRIDE
    {
        return new npc_risen_witch_doctorAI(creature);
    }
@@ -603,14 +603,14 @@ public:
        uint32 uiStrikeTimer;
        uint32 uiVomitTimer;
 
-       void Reset()
+       void Reset() OVERRIDE
        {
            Walk = false;
            uiVomitTimer = 15000;
            uiStrikeTimer = 6000;
        }
 
-       void UpdateAI(uint32 diff)
+       void UpdateAI(uint32 diff) OVERRIDE
        {
            if(!pInstance) return;
 
@@ -652,7 +652,7 @@ public:
            DoMeleeAttackIfReady();
        }
 
-       void JustDied(Unit* /*killer*/)
+       void JustDied(Unit* /*killer*/) OVERRIDE
        {
            if(!pInstance)
                return;
@@ -661,7 +661,7 @@ public:
        }
    };
 
-   CreatureAI* GetAI(Creature* creature) const
+   CreatureAI* GetAI(Creature* creature) const OVERRIDE
    {
        return new npc_abonAI(creature);
    }

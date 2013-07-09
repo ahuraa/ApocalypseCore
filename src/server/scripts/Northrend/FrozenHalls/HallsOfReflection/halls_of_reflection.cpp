@@ -257,7 +257,7 @@ private:
 public:
     npc_jaina_or_sylvanas_hor(bool isSylvana, const char* name) : CreatureScript(name), m_isSylvana(isSylvana) { }
 
-    bool OnGossipSelect(Player* pPlayer, Creature* pCreature, uint32 /*uiSender*/, uint32 uiAction)
+    bool OnGossipSelect(Player* pPlayer, Creature* pCreature, uint32 /*uiSender*/, uint32 uiAction) OVERRIDE
     {
         pPlayer->PlayerTalkClass->ClearMenus();
         switch (uiAction)
@@ -279,7 +279,7 @@ public:
         return true;
     }
 
-    bool OnGossipHello(Player* pPlayer, Creature* pCreature)
+    bool OnGossipHello(Player* pPlayer, Creature* pCreature) OVERRIDE
     {
         if (pCreature->IsQuestGiver())
             pPlayer->PrepareQuestMenu(pCreature->GetGUID());
@@ -318,7 +318,7 @@ public:
 
         EventMap events;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             events.Reset();
 
@@ -343,7 +343,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             events.Update(diff);
             switch(events.ExecuteEvent())
@@ -803,7 +803,7 @@ class npc_ghostly_priest : public CreatureScript
 public:
     npc_ghostly_priest() : CreatureScript("npc_ghostly_priest") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_ghostly_priestAI(creature);
     }
@@ -818,7 +818,7 @@ public:
         InstanceScript* instance;
         EventMap events;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             events.Reset();
         }
@@ -827,7 +827,7 @@ public:
         {
             instance->SetData(DATA_WAVE_STATE, FAIL);
         }
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SHADOW_WORD_PAIN, 8000, 0, PHASE_ONE); // TODO: adjust timers
             events.ScheduleEvent(EVENT_CIRCLE_OF_DESTRUCTION, 12000, 0, PHASE_ONE);
@@ -835,7 +835,7 @@ public:
             events.ScheduleEvent(EVENT_DARK_MENDING, 20000, 0, PHASE_ONE);
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (roll_chance_i(5))
                 Talk(SAY_TRASH_DEATH);
@@ -852,7 +852,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim() && !(events.GetPhaseMask() & PHASE_INTRO_MASK))
                 return;
@@ -925,7 +925,7 @@ class npc_phantom_mage : public CreatureScript
 public:
     npc_phantom_mage() : CreatureScript("npc_phantom_mage") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_phantom_mageAI(creature);
     }
@@ -940,7 +940,7 @@ public:
         InstanceScript* instance;
         EventMap events;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             events.Reset();
         }
@@ -961,13 +961,13 @@ public:
             }
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (roll_chance_i(5))
                 Talk(SAY_TRASH_DEATH);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_FIREBALL, 3000, 0, PHASE_ONE); // TODO: adjust timers
             events.ScheduleEvent(EVENT_FLAMESTRIKE, 15000, 0, PHASE_ONE);
@@ -976,7 +976,7 @@ public:
             //events.ScheduleEvent(EVENT_HALLUCINATION, 40000, 0, PHASE_ONE); // Disabled until I can figure out why this casts pre-maturely.
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim() && !(events.GetPhaseMask() & PHASE_INTRO_MASK))
                 return;
@@ -1043,7 +1043,7 @@ class npc_phantom_hallucination : public CreatureScript
 public:
     npc_phantom_hallucination() : CreatureScript("npc_phantom_hallucination") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_phantom_hallucinationAI(creature);
     }
@@ -1054,7 +1054,7 @@ public:
         {
         }
 
-        void JustDied(Unit* /*who*/)
+        void JustDied(Unit* /*who*/) OVERRIDE
         {
             DoCast(SPELL_HALLUCINATION_2);
         }
@@ -1067,7 +1067,7 @@ class npc_shadowy_mercenary : public CreatureScript
 public:
     npc_shadowy_mercenary() : CreatureScript("npc_shadowy_mercenary") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_shadowy_mercenaryAI(creature);
     }
@@ -1082,7 +1082,7 @@ public:
         InstanceScript* instance;
         EventMap events;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             events.Reset();
         }
@@ -1103,13 +1103,13 @@ public:
             }
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (roll_chance_i(5))
                 Talk(SAY_TRASH_DEATH);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SHADOW_STEP, 8000, 0, PHASE_ONE); // TODO: adjust timers
             events.ScheduleEvent(EVENT_DEADLY_POISON, 5000, 0, PHASE_ONE);
@@ -1117,7 +1117,7 @@ public:
             events.ScheduleEvent(EVENT_KIDNEY_SHOT, 24000, 0, PHASE_ONE);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim() && !(events.GetPhaseMask() & PHASE_INTRO_MASK))
                 return;
@@ -1178,7 +1178,7 @@ class npc_spectral_footman : public CreatureScript
 public:
     npc_spectral_footman() : CreatureScript("npc_spectral_footman") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_spectral_footmanAI(creature);
     }
@@ -1193,7 +1193,7 @@ public:
         InstanceScript* instance;
         EventMap events;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             events.Reset();
         }
@@ -1214,20 +1214,20 @@ public:
             }
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (roll_chance_i(5))
                 Talk(SAY_TRASH_DEATH);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SPECTRAL_STRIKE, 5000, 0, PHASE_ONE); // TODO: adjust timers
             events.ScheduleEvent(EVENT_SHIELD_BASH, 10000, 0, PHASE_ONE);
             events.ScheduleEvent(EVENT_TORTURED_ENRAGE, 15000, 0, PHASE_ONE);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim() && !(events.GetPhaseMask() & PHASE_INTRO_MASK))
                 return;
@@ -1283,7 +1283,7 @@ class npc_tortured_rifleman : public CreatureScript
 public:
     npc_tortured_rifleman() : CreatureScript("npc_tortured_rifleman") { }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_tortured_riflemanAI(creature);
     }
@@ -1298,7 +1298,7 @@ public:
         InstanceScript* instance;
         EventMap events;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             events.Reset();
         }
@@ -1319,13 +1319,13 @@ public:
             }
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (roll_chance_i(5))
                 Talk(SAY_TRASH_DEATH);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SHOOT, 2000, 0, PHASE_ONE); // TODO: adjust timers
             events.ScheduleEvent(EVENT_CURSED_ARROW, 10000, 0, PHASE_ONE);
@@ -1333,7 +1333,7 @@ public:
             events.ScheduleEvent(EVENT_ICE_SHOT, 15000, 0, PHASE_ONE);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim() && !(events.GetPhaseMask() & PHASE_INTRO_MASK))
                 return;
@@ -1430,7 +1430,7 @@ public:
         uint32 uiSpikeTimer;
         uint32 uiCloneTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             if (!instance)
                 return;
@@ -1440,7 +1440,7 @@ public:
             instance->SetData(DATA_FROSWORN_EVENT, NOT_STARTED);
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (!instance)
                 return;
@@ -1448,7 +1448,7 @@ public:
             instance->SetData(DATA_FROSWORN_EVENT, DONE);
         }
 
-        void MoveInLineOfSight(Unit* who)
+        void MoveInLineOfSight(Unit* who)  OVERRIDE
         {
             if (!instance)
                 return;
@@ -1470,7 +1470,7 @@ public:
             AttackStart(who);
         }
 
-        void EnterCombat(Unit * /*victim*/)
+        void EnterCombat(Unit * /*victim*/) OVERRIDE
         {
             if (!instance)
                 return;
@@ -1478,7 +1478,7 @@ public:
             instance->SetData(DATA_FROSWORN_EVENT, IN_PROGRESS);
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if(!UpdateVictim())
                 return;
@@ -1529,7 +1529,7 @@ public:
 
         }
     };
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_frostworn_generalAI(creature);
     }
@@ -1550,17 +1550,17 @@ public:
         InstanceScript* instance;
         uint32 uiStrikeTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiStrikeTimer = urand(1000,3000);
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             DoCastAOE(SPELL_SPIRIT_BURST, true);
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if(!UpdateVictim())
                 return;
@@ -1577,7 +1577,7 @@ public:
             DoMeleeAttackIfReady();
         }
     };
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_spiritual_reflectionAI(creature);
     }
@@ -1637,7 +1637,7 @@ public:
         }
     }
 
-    bool OnGossipHello(Player* player, Creature* creature)
+    bool OnGossipHello(Player* player, Creature* creature) OVERRIDE
     {
         InstanceScript* m_pInstance = (InstanceScript*)creature->GetInstanceScript();
 
@@ -1657,7 +1657,7 @@ public:
         return true;
     }
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_jaina_and_sylvana_hor_part2AI(creature);
     }
@@ -1689,7 +1689,7 @@ public:
         Creature* pLichKing;
         uint32 m_chestID;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             if(!m_pInstance)
                 return;
@@ -1729,7 +1729,7 @@ public:
 
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if(!m_pInstance)
                 return;
@@ -1885,7 +1885,7 @@ public:
             }
         }
 
-        void MoveInLineOfSight(Unit* who)
+        void MoveInLineOfSight(Unit* who)  OVERRIDE
         {
             if(!who || !m_pInstance)
                 return;
@@ -2282,7 +2282,7 @@ class npc_queldelar : public CreatureScript
 public:
     npc_queldelar() : CreatureScript("npc_queldelar") { }
 
-    CreatureAI* GetAI(Creature* pCreature) const
+    CreatureAI* GetAI(Creature* pCreature) const OVERRIDE
     {
         return new npc_queldelarAI(pCreature);
     }

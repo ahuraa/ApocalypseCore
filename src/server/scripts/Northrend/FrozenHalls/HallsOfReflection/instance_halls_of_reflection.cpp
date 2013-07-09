@@ -47,7 +47,7 @@ class instance_halls_of_reflection : public InstanceMapScript
 public:
     instance_halls_of_reflection() : InstanceMapScript("instance_halls_of_reflection", 668) { }
 
-    InstanceScript* GetInstanceScript(InstanceMap* pMap) const
+    InstanceScript* GetInstanceScript(InstanceMap* pMap) const OVERRIDE
     {
         return new instance_halls_of_reflection_InstanceMapScript(pMap);
     }
@@ -316,7 +316,7 @@ public:
             }
         }
 
-        void SetData(uint32 type, uint32 data)
+        void SetData(uint32 type, uint32 data) OVERRIDE
         {
             switch(type)
             {
@@ -452,7 +452,7 @@ public:
                 SaveToDB();
         }
 
-        uint32 GetData(uint32 type) const
+        uint32 GetData(uint32 type) const OVERRIDE
         {
             switch(type)
             {

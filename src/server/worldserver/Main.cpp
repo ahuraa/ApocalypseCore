@@ -38,8 +38,8 @@
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "worldserver";
-char serviceLongName[] = "ApocalypseCore world service";
-char serviceDescription[] = "ApocalypseCore World of Warcraft emulator world service";
+char serviceLongName[] = "I WoW Core world service";
+char serviceDescription[] = "I WoW Core World of Warcraft emulator world service";
 /*
  * -1 - not in service mode
  *  0 - stopped

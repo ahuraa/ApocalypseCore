@@ -134,9 +134,9 @@ int Master::Run()
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  _/    _/ _/      _/ _/          ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "   _/_/   _/      _/ _/_/_/_/ 	 ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "                         C O R E  ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " https://github.com/ApocalypseCore ");
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " https://github.com/Ahuraa ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " One Community developers Costa Rica(c) 2013");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " Desarrollado por ApocalypseEmu ");
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " Desarrollado por ApsEmu ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " One ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, " Presione <Ctrl-C> para detenerlo.\n");
 

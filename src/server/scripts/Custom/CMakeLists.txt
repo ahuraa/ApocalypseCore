@@ -10,6 +10,8 @@
 
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}
+  Custom/duel_reset.cpp
+  Custom/arena_top_teams.cpp
 )
 
 message("  -> Prepared: Custom")

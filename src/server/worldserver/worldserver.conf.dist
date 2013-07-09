@@ -29,6 +29,7 @@
 #    CUSTOM SERVER OPTIONS
 #    LOGGING SYSTEM SETTINGS
 #    MOVEMENT ANTICHEAT PASIVO
+#    DUEL RESET COOLDOWN
 #
 ###################################################################################################
 
@@ -1648,6 +1649,11 @@ GM.LowerSecurity = 0
 GM.TicketSystem.ChanceOfGMSurvey = 50
 
 #
+#    GmChatBlueInGame
+
+Gm.Chat.Blue.Enable = 1
+
+#
 ###################################################################################################
 
 ###################################################################################################
@@ -2856,3 +2862,50 @@ Anticheat.Ban = 1
 
 #
 ###################################################################################################
+
+###################################################################################################
+# Duel Reset Cooldown
+#
+#     DuelReset.Cooldown.OnStart
+#     Reseting cooldown and restore health to start of duel.
+#     Default: 0 - Disable
+#              1 - Enable
+#
+
+DuelReset.Cooldown.OnStart = 1
+
+#     DuelReset.Cooldown.OnFinish 
+#     Reseting cooldown and restore health to finish of duel.
+#     Default: 0 - Disable
+#              1 - Enable
+# 
+
+DuelReset.Cooldown.OnFinish = 0
+
+#     DuelReset.Cooldown.Only.in.Elwynn.and.Durotar
+#     Reseting cooldown only in Elwynn forest and Durotar locations.
+#     Default: 0 - Disable
+#              1 - Enable
+#
+
+DuelReset.Cooldown.Only.in.Elwynn.and.Durotar = 0
+
+#     DuelReset.Cooldown.Max.Energy.OnStart
+#     Sets rage, mana and runic power to max on duel start.
+#     Default: 0 - Disable
+#              1 - Enable
+#
+
+DuelReset.Cooldown.Max.Energy.OnStart = 1
+
+#     DuelReset.Cooldown.Reset.Energy.OnStart
+#     Resets rage and runic power on duel start.
+#     Default: 0 - Disable
+#              1 - Enable
+#
+
+DuelReset.Cooldown.Reset.Energy.OnStart = 1
+
+ #
+ ###################################################################################################
+

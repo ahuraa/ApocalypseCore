@@ -24,6 +24,10 @@ void AddSC_example_escort();
 void AddSC_example_gossip_codebox();
 void AddSC_example_misc();
 void AddSC_example_commandscript();
+  // Duel Reset
+void AddSC_DuelReset();
+// Npc Top 10 Arena Teams
+void AddSC_arena_top_teams();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1320,6 +1324,9 @@ void AddCustomScripts()
 {
 #ifdef SCRIPTS
     /* This is where custom scripts should be added. */
-
+	// Duel Reset
+    AddSC_DuelReset();
+	// Npc Top 10 Arena Teams
+    AddSC_arena_top_teams();
 #endif
 }

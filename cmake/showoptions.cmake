@@ -1,8 +1,8 @@
 # output generic information about the core and buildtype chosen
 message("")
-message("* ApocalypseCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
+message("* IWoWCore revision   : ${rev_hash} ${rev_date} (${rev_branch} branch)")
 if( UNIX )
-  message("* ApocalypseCore buildtype  : ${CMAKE_BUILD_TYPE}")
+  message("* IWoWCore buildtype  : ${CMAKE_BUILD_TYPE}")
 endif()
 message("")
 

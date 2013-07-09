@@ -1,25 +1,18 @@
-== Apocalypse Core Team ==
-¿Quiénes Somos?
-ApocalypseCore Teams es un grupo de Programadores encargados de desarrollar Emuladores con la colaboración de codigos de usuarios reconocidos y con código nuestro con el objetivo de crear un emulador donde podamos obtener la mayor cantidad de contenido posible, actualizado y estable para servidores privados de World Of WarCraft.
+== Aps Core Team ==
 
 También queremos agradecer al equipo de TrinityCore por el código base del proyecto
 
-http://apocalypsecore.tk/
+http://www.miha.mihanblog.com
+
 Gracias a quienes hacen este proyecto posible o estuvieron anteriormente y su respectivo crédito a:
 
-Copyright (C) ScriptDev2   <http://www.scriptdev2.com/>
-Copyright (C) TrinityCore  <http://www.trinitycore.org>
-Copyright (C) One          <https://github.com/Oneluiz>
-Copyright (C) chacal1231   <https://github.com/chacal1231>
+Copyright (C) TrinityCore  (http://www.trinitycore.org)
+Copyright (C) One          (https://github.com/Oneluiz)
+Copyright (C) chacal1231   (https://github.com/chacal1231)
+copyright (C) Asp Core     (https://github.com/ahuraa)
 
 If you want to participate in the project contact us
-
-== MaNGOS Two -- General information =
-MaNGOS Two is a full featured server for World of Warcraft, in its WotLK version supporting clients 
-from the patch 3.3.4 branch, specifically patch 3.3.4.
-World of Warcraft, and all World of Warcraft or Warcraft art, images, and lore are copyrighted 
-by Blizzard Entertainment, Inc..
-
+wadadwawd
 = TrinityCore -- General information =
 
 Copyright (C) TrinityCore (http://www.trinitycore.org)
@@ -89,7 +82,7 @@ Platform: Linux, Windows or Mac
 Processor with SSE2 support
 ACE ≥ 5.8.3
 MySQL ≥ 5.1.0
-CMake ≥ 2.8.0
+CMake ≥ 2.8.0 (max 2.8.9 under linux)
 OpenSSL ≥ 0.9.8o
 GCC ≥ 4.3 (Linux only)
 MS Visual Studio ≥ 9 (2008) (Windows only)
@@ -98,5 +91,5 @@ if wiki refers to TDB 50 and you see TDB 52 get the higher number.
 Some reading skills, search forum, read http://www.trinitycore.org/f/topic/1518-
 and http://www.trinitycore.org/f/topic/37- before posting a bug report or ask for
 help on forum. 
-Search for existing bug reports before posting your own bug reports; don't post multiple
+Search for existing bug reports before post your bug report, don't post multiple
 bugs on a single ticket.

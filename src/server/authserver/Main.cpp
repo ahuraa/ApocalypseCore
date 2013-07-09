@@ -112,9 +112,9 @@ extern int main(int argc, char **argv)
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER, "  _/    _/ _/      _/ _/          ");
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER, "   _/_/   _/      _/ _/_/_/_/ 	  ");
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " Autentificador de Cuentas   AUTH ");	
-    TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " https://github.com/ApocalypseCore/          ");
+    TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " https://github.com/Ahuraa/          ");
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " One Community developers Costa Rica(c) 2013 ");
-    TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " Desarrollado por ApocalypseEmu ");
+    TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " Desarrollado por ApsEmu ");
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER, " One ");
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER,   "Presione <Ctrl-C> para detenerlo.\n");
 			
